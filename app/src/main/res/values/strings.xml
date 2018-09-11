@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Fanyi</string>
+    <string name="title_home">Translate</string>
+    <string name="title_saved">Saved</string>
+    <string name="title_history">History</string>
+    <string name="title_learning">Learning</string>
+</resources>
