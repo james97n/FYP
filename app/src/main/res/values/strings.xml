@@ -4,6 +4,6 @@
     <string name="title_saved">Saved</string>
     <string name="title_history">History</string>
     <string name="title_learning">Learning</string>
-    <string name="search_hint">Enter Text.</string>
+    <string name="search_hint">Enter Text Here (English/Chinese)</string>
     <string name="input">Input</string>
 </resources>

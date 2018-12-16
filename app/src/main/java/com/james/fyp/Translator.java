@@ -18,7 +18,7 @@ public class Translator {
     public static String translate(String langFrom, String langTo, String text) throws IOException {
         // INSERT YOU URL HERE
         StringBuilder response = new StringBuilder();
-        String text2 = text;
+        String check = text; // check the translate result of the input text
         try {
             String urlStr = "https://script.google.com/macros/s/AKfycbwMnih9Fdg7USzIQLQMHXkeMaVbgNVVN33kTCAgBZmU7mDImNQ/exec" +
                     "?q=" + URLEncoder.encode(text, "UTF-8") +
@@ -30,8 +30,17 @@ public class Translator {
             con.setRequestProperty("User-Agent", "Mozilla/5.0");
             BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            inputLine = in.readLine(); // convert BufferedReader to String
+            for (int i = 0; i < inputLine.length(); i++){
+                char c = inputLine.charAt(i);
+                //Process char
+                if(c == '&')
+                {
+                    response.append("\'");
+                    i = i +4;
+                }
+                else
+                {response.append(c);}
             }
             in.close();
 
@@ -39,7 +48,8 @@ public class Translator {
             e.printStackTrace();
 
         }
-        if(text2.equals(response.toString())) {
+        if(check.equals(response.toString())) // if the result is same after translated, exchange the source and destination
+        {
             return translate(langTo,langFrom,text);
         }
         else
