@@ -6,4 +6,6 @@
     <string name="title_learning">Learning</string>
     <string name="search_hint">Enter Text Here (English/Chinese)</string>
     <string name="input">Input</string>
+    <string name="word"><u>Word</u></string>
+    <string name="meaning"><u>Meaning</u></string>
 </resources>

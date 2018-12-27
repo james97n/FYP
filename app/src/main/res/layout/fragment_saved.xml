@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="20dp"
+    android:orientation="vertical">
 
     <TableRow>
+
 
         <TextView
             android:layout_width="181dp"
             android:layout_height="43dp"
-            android:text="  Your saved vocabulary:"></TextView>
+            android:text="Your saved vocabularies:"/>
+
+        <Button
+            android:id="@+id/btnDelete2"
+            android:layout_width="10dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="false"
+            android:onClick="delete"
+            android:text="Delete" />
     </TableRow>
 
     <TableRow>
@@ -19,118 +32,35 @@
         <TextView
             android:layout_width="182dp"
             android:layout_height="50dp"
-            android:text="  Word"
+            android:text="@string/word"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         <TextView
             android:layout_width="181dp"
             android:layout_height="50dp"
-            android:text="Meaning"
-            android:textAppearance="@android:style/TextAppearance.Material.Large"></TextView>
+            android:text="@string/meaning"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"/>
 
-        <TextView android:text=" "></TextView>
     </TableRow>
 
 
     <ScrollView
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="40"
-                    android:text="   I"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="53dp"
-                    android:layout_weight="40"
-                    android:text="我"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <ImageButton
-                    android:id="@+id/imageButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_delete" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="40"
-                    android:text="   Love"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="53dp"
-                    android:layout_weight="40"
-                    android:text="爱"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <ImageButton
-                    android:id="@+id/imageButton4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_delete" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="40"
-                    android:text="   You"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="53dp"
-                    android:layout_weight="40"
-                    android:text="你"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <ImageButton
-                    android:id="@+id/imageButton5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@android:drawable/ic_delete" />
-
-            </TableRow>
+        <TableLayout android:id="@+id/savedTable"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
         </TableLayout>
-
-
-
 
 
     </ScrollView>
 
 
+
+
 </TableLayout>
+
+

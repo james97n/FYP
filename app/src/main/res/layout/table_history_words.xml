@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium" />
+
+    <TextView
+        android:id="@+id/meaning"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+        />
+</TableRow>
+

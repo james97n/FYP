@@ -15,7 +15,7 @@ public class Translator {
     }
 
 
-    public static String translate(String langFrom, String langTo, String text) throws IOException {
+    public static String translate(String langFrom, String langTo, String text,int depth) throws IOException {
         // INSERT YOU URL HERE
         StringBuilder response = new StringBuilder();
         String check = text; // check the translate result of the input text
@@ -48,9 +48,9 @@ public class Translator {
             e.printStackTrace();
 
         }
-        if(check.equals(response.toString())) // if the result is same after translated, exchange the source and destination
+        if(check.equals(response.toString())&&depth>0) // if the result is same after translated, exchange the source and destination
         {
-            return translate(langTo,langFrom,text);
+            return translate(langTo,langFrom,text,--depth);
         }
         else
             return response.toString();
