@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">小译</string>
+    <string name="title_home">翻译</string>
+    <string name="title_saved">词库</string>
+    <string name="title_history">历史纪录</string>
+    <string name="title_learning">学习</string>
+    <string name="search_hint">请输入您想翻译的文字 （中文/英文）</string>
+    <string name="word"><u>词</u></string>
+    <string name="meaning"><u>意思</u></string>
+    <string name="save">保存</string>
+    <string name="intro">您好, \n\n 我叫小译, \n\n您的翻译好助手！</string>
+    <string name="intro_save">您所保存过的词都在这里哟: </string>
+    <string name="intro_history">您所有的翻译记录: </string>
+</resources>

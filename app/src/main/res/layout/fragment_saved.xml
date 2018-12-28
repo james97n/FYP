@@ -16,15 +16,13 @@
         <TextView
             android:layout_width="181dp"
             android:layout_height="43dp"
-            android:text="Your saved vocabularies:"/>
+            android:text="@string/intro_save"/>
 
         <Button
             android:id="@+id/btnDelete2"
             android:layout_width="10dp"
             android:layout_height="50dp"
-            android:layout_alignParentRight="false"
-            android:onClick="delete"
-            android:text="Delete" />
+            android:text="@string/delete" />
     </TableRow>
 
     <TableRow>
@@ -51,7 +49,7 @@
 
         <TableLayout android:id="@+id/savedTable"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="wrap_content">
 
         </TableLayout>
 

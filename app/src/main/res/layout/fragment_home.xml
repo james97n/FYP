@@ -12,8 +12,8 @@
         android:background="@drawable/back"
         android:gravity="center"
         android:scrollbars="vertical"
-        android:text=" Translated Text"
-        android:textSize="32dp" />
+        android:text="@string/intro"
+        android:textSize="28sp" />
 
     <EditText
         android:id="@+id/search"
@@ -36,8 +36,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="108dp"
         android:layout_marginStart="64dp"
-        android:text="Save"
-        android:onClick="saveHandler"/>
+        android:text="@string/save"/>
 
 
 </RelativeLayout>

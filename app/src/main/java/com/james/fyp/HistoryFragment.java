@@ -23,11 +23,11 @@ public class HistoryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // declaration
         //private static Context context = null;
-        Boolean empty = true;
+        //Boolean empty = true;
 
         final View historyView = inflater.inflate(R.layout.fragment_history, container, false); // declare history view
         //final TextView tView = historyView.findViewById(R.id.historyTextView1); // text view
-        TableLayout tablelayout = historyView.findViewById(R.id.historyTable); //  table layout
+        //TableLayout tablelayout = historyView.findViewById(R.id.historyTable); //  table layout
         Button btnDelete = historyView.findViewById(R.id.btnDelete); //delete button
         final HistoryDBHandler historyDBHandler = new HistoryDBHandler(getActivity(),null,null,1); // db handler
 
