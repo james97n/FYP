@@ -67,11 +67,10 @@ public class SavedDBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
-    //public History findHandler(String history) {}
+
     public void deleteAllHandler() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ TABLE_NAME);
-
         db.close();
     }
 

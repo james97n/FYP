@@ -8,8 +8,21 @@
     <string name="search_hint">请输入您想翻译的文字 （中文/英文）</string>
     <string name="word"><u>词</u></string>
     <string name="meaning"><u>意思</u></string>
+    <string name="delete">清空</string>
     <string name="save">保存</string>
     <string name="intro">您好, \n\n 我叫小译, \n\n您的翻译好助手！</string>
     <string name="intro_save">您所保存过的词都在这里哟: </string>
     <string name="intro_history">您所有的翻译记录: </string>
+    <string name="no_input">您好像没输入任何文字哟。。</string>
+    <string name="translate_saved">翻译已保存在词库。</string>
+    <string name="no_words">必须先翻译了才能保存哟。</string>
+    <string name="del_history">历史已清空。</string>
+    <string name="del_saved">词库已清空。</string>
+    <string name="yes">确定</string>
+    <string name="no">取消</string>
+    <string name="Cannot_undone">清除了将无法复原，你确定吗？</string>
+    <string name="translating">翻译中。。</string>
+    <string name="confirm_history">清除所有历史纪录？</string>
+    <string name="confirm_saved">清除所有保存的翻译？</string>
+
 </resources>

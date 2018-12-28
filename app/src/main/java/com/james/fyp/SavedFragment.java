@@ -33,18 +33,21 @@ public class SavedFragment extends Fragment {
 
         //dialog pop up
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Permanently delete all saved vocabularies?");
-        builder.setMessage("This can't be undone");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        builder.setTitle(getString(R.string.confirm_saved));
+        builder.setMessage(getString(R.string.Cannot_undone));
+        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
                 savedDBHandler.deleteAllHandler();
-                savedDBHandler.loadHandler(savedView,getActivity());
-                Toast.makeText(getContext(), "Saved vocabularies deleted.", Toast.LENGTH_LONG).show();
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new SavedFragment())
+                        .addToBackStack(null)
+                        .commit();
+                Toast.makeText(getContext(), getString(R.string.del_saved), Toast.LENGTH_LONG).show();
 
             }
         });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.dismiss();
             }

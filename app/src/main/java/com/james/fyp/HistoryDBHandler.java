@@ -85,7 +85,7 @@ public class HistoryDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //public History findHandler(String history) {}
+
     public void deleteAllHandler() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("delete from "+ TABLE_NAME);

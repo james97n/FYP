@@ -7,9 +7,20 @@
     <string name="search_hint">Enter Text Here (English/Chinese)</string>
     <string name="word"><u>Word</u></string>
     <string name="meaning"><u>Meaning</u></string>
-    <string name="delete">Delete</string>
+    <string name="delete">Clear All</string>
     <string name="save">Save</string>
     <string name="intro">Hi, \n\n I am Fanyi, \n\nYour Translator.</string>
     <string name="intro_save">Your saved vocabularies: </string>
     <string name="intro_history">Your translate history: </string>
+    <string name="no_input">It seems that you didn't input anything..</string>
+    <string name="translate_saved">Translation saved.</string>
+    <string name="no_words">No words is entered.</string>
+    <string name="del_history">Translate history deleted.</string>
+    <string name="del_saved">Saved vocabularies deleted.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="Cannot_undone">This can't be undone</string>
+    <string name="translating">Translating</string>
+    <string name="confirm_history">Delete all translation history?</string>
+    <string name="confirm_saved">Delete all saved vocabularies?</string>
 </resources>

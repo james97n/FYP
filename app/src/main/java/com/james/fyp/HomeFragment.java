@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
-                    tView.setText("Translating...");
+                    tView.setText(getString(R.string.translating));
                     InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     //validTranslate = false;
@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
                         }
                     }
                     else{
-                        translatedtext = "It seems that you didn't input anything..";
+                        translatedtext = getString(R.string.no_input);
                     }
 
                     tView.setText(translatedtext);
@@ -97,10 +97,10 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
                 if(save) {
                     savedDBHandler.addHandler(text, translatedtext);
-                    Toast.makeText(getContext(), "Translation saved.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.translate_saved), Toast.LENGTH_LONG).show();
                 }
                 else{
-                    Toast.makeText(getContext(), "No words is entered", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), getString(R.string.no_words), Toast.LENGTH_LONG).show();
                 }
             }
         });
