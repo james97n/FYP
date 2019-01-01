@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment {
     TextView tView, inputText;
     Translator translator = new Translator();
     Button saveBtn;
-    Boolean save = false;
     //Boolean validTranslate = false;
     @Nullable
     @Override
@@ -50,6 +49,8 @@ public class HomeFragment extends Fragment {
         final SavedDBHandler savedDBHandler = new SavedDBHandler(getActivity(),null,null,1);
         tView = homeView.findViewById(R.id.textView1);
         tView.setMovementMethod(new ScrollingMovementMethod());
+        saveBtn =homeView.findViewById(R.id.btnSave);
+        saveBtn.setEnabled(false);
 
 
         inputText = homeView.findViewById(R.id.search);
@@ -70,7 +71,7 @@ public class HomeFragment extends Fragment {
                             translatedtext = translator.translate("en", "zh-CN", text,1);
                             historyDBHandler.addHandler(text,translatedtext);
                             tView.setText(translatedtext);
-                            save = true;
+                            saveBtn.setEnabled(true);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -90,18 +91,14 @@ public class HomeFragment extends Fragment {
         });
 
         //save button action
-        saveBtn =homeView.findViewById(R.id.btnSave);
+
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(save) {
                     savedDBHandler.addHandler(text, translatedtext);
                     Toast.makeText(getContext(), getString(R.string.translate_saved), Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(getContext(), getString(R.string.no_words), Toast.LENGTH_LONG).show();
-                }
+
             }
         });
 

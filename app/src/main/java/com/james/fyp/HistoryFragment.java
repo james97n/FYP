@@ -21,13 +21,9 @@ public class HistoryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // declaration
-        //private static Context context = null;
-        //Boolean empty = true;
 
+        // declaration
         final View historyView = inflater.inflate(R.layout.fragment_history, container, false); // declare history view
-        //final TextView tView = historyView.findViewById(R.id.historyTextView1); // text view
-        //TableLayout tablelayout = historyView.findViewById(R.id.historyTable); //  table layout
         Button btnDelete = historyView.findViewById(R.id.btnDelete); //delete button
         final HistoryDBHandler historyDBHandler = new HistoryDBHandler(getActivity(),null,null,1); // db handler
 
@@ -35,28 +31,28 @@ public class HistoryFragment extends Fragment {
         historyDBHandler.loadHandler(historyView,getActivity());
 
         //dialog pop up
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()); //confirm delete dialog
         builder.setTitle(getString(R.string.confirm_history));
         builder.setMessage(getString(R.string.Cannot_undone));
         builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+            public void onClick(DialogInterface dialog, int id) { // action yes
                 dialog.dismiss();
                 historyDBHandler.deleteAllHandler();
                 getFragmentManager().beginTransaction()
                         .replace(((ViewGroup) getView().getParent()).getId(), new HistoryFragment())
                         .addToBackStack(null)
-                        .commit();
+                        .commit(); // refresh the fragment
                 Toast.makeText(getContext(), getString(R.string.del_history), Toast.LENGTH_LONG).show();
 
             }
         });
         builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+            public void onClick(DialogInterface dialog, int id) { //action no
                 dialog.dismiss();
             }
         });
 
-        // button action
+        // delete button action
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
