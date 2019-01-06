@@ -1,6 +1,10 @@
 package com.james.fyp;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,9 +13,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.os.Handler;
+
+
+import java.util.List;
 
 public  class MainActivity extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener {
+        implements BottomNavigationView.OnNavigationItemSelectedListener, QuestionSet.QuestionSetListener{
+
+
+    private LearningFragment learningFragment = new LearningFragment();
 
 
     @Override
@@ -22,6 +33,7 @@ public  class MainActivity extends AppCompatActivity
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
+
 
         loadFragment(new HomeFragment());
     }
@@ -80,12 +92,18 @@ public  class MainActivity extends AppCompatActivity
         }
     }
 
-    public void refresh (String tag){
-        Fragment frg = getSupportFragmentManager().findFragmentByTag(tag);
-        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.detach(frg);
-        ft.attach(frg);
-        ft.commit();
+
+
+    @Override
+    public void UpdateHighscore(int highscoreNew){
+        learningFragment.updateHighscore(highscoreNew);
     }
+
+
+
+
+
+
+
 
 }

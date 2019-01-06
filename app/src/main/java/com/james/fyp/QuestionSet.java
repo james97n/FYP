@@ -1,14 +1,23 @@
 package com.james.fyp;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,11 +26,21 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Handler;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Logger;
 
-public class QuestionSet extends Fragment{
+public class QuestionSet extends Fragment {
+
+    //protected static final String EXTRA_SCORE = "extraScore";
+
+    private QuestionSetListener listener;
+
+    private static final long COUNTDOWN_IN_MILLIS = 20000;
+
 
     protected View quizView;
     protected TextView textViewQuestion;
@@ -35,6 +54,10 @@ public class QuestionSet extends Fragment{
     protected Button buttonConfirmNext;
 
     protected ColorStateList textColorDefaultRb;
+    private ColorStateList textColorDefaultCd;
+
+    private CountDownTimer countDownTimer;
+    private long timeLeftInMillis;
 
     protected List<Question> questionList;
     protected int questionCounter;
@@ -44,12 +67,21 @@ public class QuestionSet extends Fragment{
     protected int score;
     protected boolean answered;
 
+    private long backPressedTime;
+
+
+    public interface QuestionSetListener{
+        void UpdateHighscore(int highScore);
+    }
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         quizView = inflater.inflate(R.layout.fragment_quiz, container, false);
-        //showFullScreen();
         ((MainActivity) getActivity()).setNavigationVisibility(false);
 
         textViewQuestion = quizView.findViewById(R.id.text_view_question);
@@ -63,7 +95,7 @@ public class QuestionSet extends Fragment{
         buttonConfirmNext = quizView.findViewById(R.id.button_confirm_next);
 
         textColorDefaultRb = rb1.getTextColors();
-
+        textColorDefaultCd = textViewCountDown.getTextColors();
 
         QuizDBHandler dbHelper = new QuizDBHandler(getContext());
         questionList = dbHelper.getAllQuestions();
@@ -110,13 +142,50 @@ public class QuestionSet extends Fragment{
             textViewQuestionCount.setText("Question: " + questionCounter + "/" + questionCountTotal);
             answered = false;
             buttonConfirmNext.setText("Confirm");
+
+            timeLeftInMillis = COUNTDOWN_IN_MILLIS;
+            startCountDown();
         } else {
             finishQuiz();
         }
     }
 
+    private void startCountDown() {
+        countDownTimer = new CountDownTimer(timeLeftInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timeLeftInMillis = millisUntilFinished;
+                updateCountDownText();
+            }
+
+            @Override
+            public void onFinish() {
+                timeLeftInMillis = 0;
+                updateCountDownText();
+                checkAnswer();
+            }
+        }.start();
+    }
+
+    private void updateCountDownText() {
+        int minutes = (int) (timeLeftInMillis / 1000) / 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+
+        String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+
+        textViewCountDown.setText(timeFormatted);
+
+        if (timeLeftInMillis < 10000) {
+            textViewCountDown.setTextColor(Color.RED);
+        } else {
+            textViewCountDown.setTextColor(textColorDefaultCd);
+        }
+    }
+
     private void checkAnswer() {
         answered = true;
+
+        countDownTimer.cancel();
 
         RadioButton rbSelected = quizView.findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
@@ -156,8 +225,44 @@ public class QuestionSet extends Fragment{
         }
     }
 
-    private void finishQuiz() {
-        getActivity().finish();
+    public void finishQuiz() {
+
+        int Score = score;
+        listener.UpdateHighscore(Score);
+        getFragmentManager().beginTransaction()
+                .replace(((ViewGroup) getView().getParent()).getId(), new LearningFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
+
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof QuestionSetListener) {
+            listener = (QuestionSetListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentAListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+    }
 }
+
+
+
