@@ -23,4 +23,6 @@
     <string name="translating">Translating</string>
     <string name="confirm_history">Delete all translation history?</string>
     <string name="confirm_saved">Delete all saved vocabularies?</string>
+    <string name="Enter_name">Please Enter Your Name</string>
+    <string name="Get_ranked">You will be ranked after completing the quiz.</string>
 </resources>

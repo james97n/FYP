@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentTop="true"
+    android:layout_marginStart="20dp"
+    android:orientation="vertical">
+
+
+    <TableRow>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="No."
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Name"
+            android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:text="Score"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"/>
+
+    </TableRow>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <TableLayout android:id="@+id/scoreTable"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+        </TableLayout>
+
+
+    </ScrollView>
+
+
+
+
+</TableLayout>
+
+

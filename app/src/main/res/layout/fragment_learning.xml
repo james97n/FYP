@@ -10,7 +10,19 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:layout_above="@id/player_name"
         android:text="Quiz"
+        android:textColor="@android:color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/player_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_above="@id/text_view_highscore"
+        android:text="Player Name: "
         android:textColor="@android:color/black"
         android:textSize="35sp" />
 
@@ -26,9 +38,19 @@
 
     <Button
         android:id="@+id/button_start_quiz"
+        android:layout_above="@id/button_score_board"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Start Quiz" />
+
+    <Button
+        android:id="@+id/button_score_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Scoreboard" />
+
+
 
 </RelativeLayout>

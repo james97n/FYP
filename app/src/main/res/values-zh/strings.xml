@@ -24,5 +24,8 @@
     <string name="translating">翻译中。。</string>
     <string name="confirm_history">清除所有历史纪录？</string>
     <string name="confirm_saved">清除所有保存的翻译？</string>
+    <string name="Enter_name">请输入您的名字</string>
+    <string name="Get_ranked">完成了测验之后，您的名字将会出现在排行榜哟</string>
+
 
 </resources>
