@@ -1,23 +1,13 @@
 package com.james.fyp;
 
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +16,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 public class QuestionSet extends Fragment {
 
@@ -39,19 +27,21 @@ public class QuestionSet extends Fragment {
 
     private QuestionSetListener listener;
 
-    private static final long COUNTDOWN_IN_MILLIS = 20000;
+    private static final long COUNTDOWN_IN_MILLIS = 10000;
 
 
     protected View quizView;
     protected TextView textViewQuestion;
     protected TextView textViewScore;
     protected TextView textViewQuestionCount;
+    private TextView textViewDifficulty;
     protected TextView textViewCountDown;
     protected RadioGroup rbGroup;
     protected RadioButton rb1;
     protected RadioButton rb2;
     protected RadioButton rb3;
     protected Button buttonConfirmNext;
+    protected static String difficulty;
 
     protected ColorStateList textColorDefaultRb;
     private ColorStateList textColorDefaultCd;
@@ -67,7 +57,7 @@ public class QuestionSet extends Fragment {
     protected int score;
     protected boolean answered;
 
-    private long backPressedTime;
+    //private long backPressedTime;
 
 
     public interface QuestionSetListener{
@@ -87,6 +77,7 @@ public class QuestionSet extends Fragment {
         textViewQuestion = quizView.findViewById(R.id.text_view_question);
         textViewScore = quizView.findViewById(R.id.text_view_score);
         textViewQuestionCount = quizView.findViewById(R.id.text_view_question_count);
+        textViewDifficulty = quizView.findViewById(R.id.text_view_difficulty);
         textViewCountDown = quizView.findViewById(R.id.text_view_countdown);
         rbGroup = quizView.findViewById(R.id.radio_group);
         rb1 = quizView.findViewById(R.id.radio_button1);
@@ -97,8 +88,11 @@ public class QuestionSet extends Fragment {
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = textViewCountDown.getTextColors();
 
+
+        textViewDifficulty.setText("Difficulty: " + difficulty);
+
         QuizDBHandler dbHelper = new QuizDBHandler(getContext());
-        questionList = dbHelper.getAllQuestions();
+        questionList = dbHelper.getQuestions(difficulty);
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList);
 
@@ -175,7 +169,7 @@ public class QuestionSet extends Fragment {
 
         textViewCountDown.setText(timeFormatted);
 
-        if (timeLeftInMillis < 10000) {
+        if (timeLeftInMillis < 5000) {
             textViewCountDown.setTextColor(Color.RED);
         } else {
             textViewCountDown.setTextColor(textColorDefaultCd);
@@ -235,6 +229,12 @@ public class QuestionSet extends Fragment {
                 .commit();
     }
 
+    public void setDifficulty(String difficult) {
+
+        difficulty = difficult;
+
+    }
+
 
 
 
@@ -262,6 +262,8 @@ public class QuestionSet extends Fragment {
             countDownTimer.cancel();
         }
     }
+
+
 }
 
 

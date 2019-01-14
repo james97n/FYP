@@ -1,28 +1,19 @@
 package com.james.fyp;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import android.os.Handler;
-
-
-import java.util.List;
 
 public  class MainActivity extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener, QuestionSet.QuestionSetListener{
+        implements BottomNavigationView.OnNavigationItemSelectedListener, QuestionSet.QuestionSetListener, LearningFragment.LearningFragmentListener {
 
 
     private LearningFragment learningFragment = new LearningFragment();
+    private QuestionSet questionSet = new QuestionSet();
 
 
     @Override
@@ -97,6 +88,11 @@ public  class MainActivity extends AppCompatActivity
     @Override
     public void UpdateHighscore(int highscoreNew){
         learningFragment.updateHighscore(highscoreNew);
+    }
+
+    @Override
+    public void setDifficulty(String difficulty) {
+        questionSet.setDifficulty(difficulty);
     }
 
 
