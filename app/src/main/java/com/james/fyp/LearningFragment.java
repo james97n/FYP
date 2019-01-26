@@ -157,11 +157,28 @@ public class LearningFragment extends Fragment {
         });
 
 
-        Button btnChangePlayer = learningView.findViewById(R.id.button_change_player);
-        btnChangePlayer.setOnClickListener(new View.OnClickListener() {
+        Button btnChangeName = learningView.findViewById(R.id.button_change_player);
+        btnChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 alert.show();
+
+            }
+        });
+
+        Button btnGraph = learningView.findViewById(R.id.button_statistic);
+        btnGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String difficult = spinnerDifficulty.getSelectedItem().toString();
+                //tview.setText("Difficulty: "+ difficult);
+
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new GraphFragment())
+                        .addToBackStack(null)
+                        .commit();
+                //scoreDBHandler.deleteAllHandler(getContext());
+
 
             }
         });
@@ -197,7 +214,7 @@ public class LearningFragment extends Fragment {
 
     }
 
-    private void loadHighscore() {
+   private void loadHighscore() {
 
         highscore = prefs.getInt(KEY_HIGHSCORE, 0);
         textViewHighscore.setText("Highscore: " + highscore);
@@ -205,7 +222,7 @@ public class LearningFragment extends Fragment {
 
     }
 
-    private String loadPlayerName() {
+    public String loadPlayerName() {
 
         return player_name = prefs.getString(PLAYER_NAME, "");
     }

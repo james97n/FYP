@@ -10,6 +10,13 @@ import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScoreDBHandler extends SQLiteOpenHelper {
 
     //information of database
@@ -75,6 +82,39 @@ public class ScoreDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         //db.execSQL("delete from "+ TABLE_NAME);
         context.deleteDatabase(DATABASE_NAME);
+        db.close();
+    }
+
+
+    public void loadPlayerHandler(View view, Context context, String player) {
+
+        GraphView graph = view.findViewById(R.id.graph);
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + COLUMN_PLAYER + " = " + "'" + player + "'" + " ORDER BY "+ COLUMN_ID + " ASC ";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        int i = 0;
+        /*DataPoint[] dp = new DataPoint[10];
+        for(int i=0;i<10;i++){
+            dp[i] = new DataPoint(i, i);
+        }*/
+        List<DataPoint> list = new ArrayList<>();
+        list.add(new DataPoint(0,0));
+        while(cursor.moveToNext())
+        {
+            int score = cursor.getInt(2);
+            list.add(new DataPoint(i+1,score));
+            i++;
+        }
+        cursor.close();
+        //DataPoint[] dp = new DataPoint[i];
+
+        DataPoint[] dpArray = new DataPoint[list.size()];
+        dpArray = list.toArray(dpArray);
+
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(dpArray);
+
+        graph.addSeries(series);
         db.close();
     }
 

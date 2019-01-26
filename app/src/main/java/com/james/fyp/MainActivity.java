@@ -9,7 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 public  class MainActivity extends AppCompatActivity
-        implements BottomNavigationView.OnNavigationItemSelectedListener, QuestionSet.QuestionSetListener, LearningFragment.LearningFragmentListener {
+        implements BottomNavigationView.OnNavigationItemSelectedListener, QuestionSet.QuestionSetListener,
+        LearningFragment.LearningFragmentListener,
+        GraphFragment.GraphFragmentListener {
 
 
     private LearningFragment learningFragment = new LearningFragment();
@@ -94,6 +96,9 @@ public  class MainActivity extends AppCompatActivity
     public void setDifficulty(String difficulty) {
         questionSet.setDifficulty(difficulty);
     }
+
+    @Override
+    public String loadPlayerName(){return learningFragment.loadPlayerName();}
 
 
 

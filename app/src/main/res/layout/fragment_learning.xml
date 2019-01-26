@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_above="@id/player_name"
         android:text="Quiz"
         android:textColor="@android:color/black"
@@ -38,14 +38,14 @@
     <Button
         android:id="@+id/button_start_quiz"
 
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="Start Quiz" />
 
     <Button
         android:id="@+id/button_score_board"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@+id/button_change_player"
@@ -63,12 +63,23 @@
 
     <Button
         android:id="@+id/button_change_player"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_below="@+id/spinner_difficulty"
         android:layout_marginTop="16dp"
         android:text="Change Player" />
+
+    <Button
+        android:id="@+id/button_statistic"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/button_score_board"
+        android:layout_marginTop="16dp"
+        android:text="Statistics" />
+
+
 
 
 
