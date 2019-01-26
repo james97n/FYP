@@ -1,28 +1,22 @@
 package com.james.fyp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GestureDetectorCompat;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import java.io.IOException;
 
@@ -35,6 +29,7 @@ public class HomeFragment extends Fragment {
     TextView tView, inputText;
     Translator translator = new Translator();
     Button saveBtn;
+    Button historyBtn;
     //Boolean validTranslate = false;
     @Nullable
     @Override
@@ -51,6 +46,7 @@ public class HomeFragment extends Fragment {
         tView.setMovementMethod(new ScrollingMovementMethod());
         saveBtn =homeView.findViewById(R.id.btnSave);
         saveBtn.setEnabled(false);
+        historyBtn = homeView.findViewById(R.id.btnHistory);
 
 
         inputText = homeView.findViewById(R.id.search);
@@ -101,6 +97,19 @@ public class HomeFragment extends Fragment {
 
             }
         });
+
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new HistoryFragment())
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
+
+
 
         return homeView;
     }

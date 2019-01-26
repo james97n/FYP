@@ -58,8 +58,8 @@ public  class MainActivity extends AppCompatActivity
                 fragment = new SavedFragment();
                 break;
 
-            case R.id.navigation_history:
-                fragment = new HistoryFragment();
+            case R.id.navigation_study:
+                fragment = new StudyFragment();
                 break;
 
             case R.id.navigation_learning:

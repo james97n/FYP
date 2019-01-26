@@ -12,14 +12,14 @@
         android:title="@string/title_saved" />
 
     <item
-        android:id="@+id/navigation_history"
+        android:id="@+id/navigation_study"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_history" />
+        android:title="Learning" />
 
     <item
         android:id="@+id/navigation_learning"
         android:icon="@drawable/ic_school_black_24dp"
-        android:title="@string/title_learning" />
+        android:title="Quiz" />
 
 
 

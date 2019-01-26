@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="181dp"
+        android:layout_height="43dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="50dp"
+        android:text="Word of the day: "
+         />
+
+    <TextView
+        android:id="@+id/wordOfTheDay"
+        android:layout_width="308dp"
+        android:layout_height="150dp"
+        android:layout_above="@+id/vocabulary"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:scrollbars="vertical"
+        android:text="你好"
+        android:textSize="50sp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/meaningOfTheDayTitle"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/wordOfTheDay"
+
+        android:layout_marginStart="50dp"
+        android:text="Meaning: "
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/meaningOfTheDay"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/meaningOfTheDayTitle"
+        android:layout_marginStart="60dp"
+        android:gravity="center"
+        android:text="How are you?"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/exampleOfTheDayTitle"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/meaningOfTheDay"
+
+        android:layout_marginStart="50dp"
+        android:text="Example: "
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/exampleOfTheDay"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/exampleOfTheDayTitle"
+        android:layout_marginStart="60dp"
+        android:gravity="center"
+        android:text="今天你好吗？\n( How are you today? )"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+
+
+</RelativeLayout>

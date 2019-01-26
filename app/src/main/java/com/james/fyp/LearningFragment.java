@@ -18,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
-
 public class LearningFragment extends Fragment {
 
     private LearningFragmentListener listener;
@@ -34,6 +33,7 @@ public class LearningFragment extends Fragment {
     public static final String KEY_HIGHSCORE = "keyHighscore";
     public static final String PLAYER_NAME = "playerName";
     protected static String player_name;
+    boolean startbtn = false;
 
     static ScoreDBHandler scoreDBHandler;
 
@@ -82,7 +82,11 @@ public class LearningFragment extends Fragment {
                 editor.putString(PLAYER_NAME, player_name);
                 editor.apply();
 
-                startQuiz();
+                //to check whether start button is clicked
+                if(startbtn){
+                    startbtn=false;
+                    startQuiz();
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -114,10 +118,25 @@ public class LearningFragment extends Fragment {
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alert.show();
+                if(loadPlayerName().equals("")){
+                    startbtn = true;
+                    alert.show();
+                    }
+                    else{startQuiz();}
 
             }
         });
+
+        //test purpose
+
+        /*GraphView graph = learningView.findViewById(R.id.graph);
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3)
+        });
+        graph.addSeries(series);*/
 
 
         Button btnScoreboard = learningView.findViewById(R.id.button_score_board);
@@ -133,6 +152,16 @@ public class LearningFragment extends Fragment {
                         .commit();
                 //scoreDBHandler.deleteAllHandler(getContext());
 
+
+            }
+        });
+
+
+        Button btnChangePlayer = learningView.findViewById(R.id.button_change_player);
+        btnChangePlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alert.show();
 
             }
         });
@@ -197,6 +226,8 @@ public class LearningFragment extends Fragment {
         super.onDetach();
         listener = null;
     }
+
+
 
 
 

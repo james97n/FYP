@@ -22,6 +22,10 @@ public class ScoreboardFragment extends Fragment{
         //loading view
         scoreDBHandler.loadHandler(scoreView,getActivity());
 
+
+        //test purpose
+
+
         return scoreView;
 
     }

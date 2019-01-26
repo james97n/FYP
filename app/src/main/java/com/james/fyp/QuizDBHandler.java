@@ -48,10 +48,10 @@ public class QuizDBHandler extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("Beginner: A is correct",
-                "A", "B", "C", 1, Question.DIFFICULTY_BEGINNER);
+        Question q1 = new Question("明天",
+                "Today", "Tomorrow", "Yesterday", 1, Question.DIFFICULTY_BEGINNER);
         addQuestion(q1);
-        Question q2 = new Question("Beginner: B is correct",
+        Question q2 = new Question("míngtiān",
                 "A", "B", "C", 2, Question.DIFFICULTY_BEGINNER);
         addQuestion(q2);
         Question q3 = new Question("Beginner: C is correct",
