@@ -185,7 +185,11 @@ public class QuestionSet extends Fragment {
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
 
         if (answerNr == currentQuestion.getAnswerNr()) {
-            score++;
+            if (difficulty.equals("Beginner")) {
+                score++;
+            } else if (difficulty.equals("Competent")) {
+                score = score + 2;
+            }
             textViewScore.setText("Score: " + score);
         }
 
@@ -200,15 +204,15 @@ public class QuestionSet extends Fragment {
         switch (currentQuestion.getAnswerNr()) {
             case 1:
                 rb1.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 1 is correct");
+                //textViewQuestion.setText("Answer 1 is correct");
                 break;
             case 2:
                 rb2.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 2 is correct");
+                //textViewQuestion.setText("Answer 2 is correct");
                 break;
             case 3:
                 rb3.setTextColor(Color.GREEN);
-                textViewQuestion.setText("Answer 3 is correct");
+                //textViewQuestion.setText("Answer 3 is correct");
                 break;
         }
 
