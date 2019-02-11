@@ -48,7 +48,7 @@ public class QuizDBHandler extends SQLiteOpenHelper {
     }
 
     private void fillQuestionsTable() {
-        Question q1 = new Question("明天",
+        /*Question q1 = new Question("明天",
                 "Today", "Tomorrow", "Yesterday", 1, Question.DIFFICULTY_BEGINNER);
         addQuestion(q1);
         Question q2 = new Question("年",
@@ -137,7 +137,7 @@ public class QuizDBHandler extends SQLiteOpenHelper {
         addQuestion(q29);
         Question q30 = new Question("十",
                 "Eight", "Nine", "Ten", 3, Question.DIFFICULTY_BEGINNER);
-        addQuestion(q30);
+        addQuestion(q30);*/
         /*Question q6 = new Question("COMPETENT: C is correct",
                 "A", "B", "C", 3, Question.DIFFICULTY_COMPETENT);
         addQuestion(q6);*/

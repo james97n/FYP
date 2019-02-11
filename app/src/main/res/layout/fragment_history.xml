@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.james.fyp.StudyFragment">
 
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,23 +47,14 @@
         </TableRow>
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-
-        <TableLayout android:id="@+id/historyTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-        </TableLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:scrollbars="vertical" />
 
 
-    </ScrollView>
-
-
-
-
-</TableLayout>
-
+    </TableLayout>
+</RelativeLayout>
 

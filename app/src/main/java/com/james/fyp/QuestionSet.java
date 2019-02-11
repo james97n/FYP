@@ -74,6 +74,7 @@ public class QuestionSet extends Fragment {
         quizView = inflater.inflate(R.layout.fragment_quiz, container, false);
         ((MainActivity) getActivity()).setNavigationVisibility(false);
 
+
         textViewQuestion = quizView.findViewById(R.id.text_view_question);
         textViewScore = quizView.findViewById(R.id.text_view_score);
         textViewQuestionCount = quizView.findViewById(R.id.text_view_question_count);

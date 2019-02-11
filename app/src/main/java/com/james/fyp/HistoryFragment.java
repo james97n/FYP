@@ -1,22 +1,27 @@
 package com.james.fyp;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class HistoryFragment extends Fragment {
+
+    private ArrayList<CardItem> mCardList = new ArrayList<>();
+    private RecyclerView mRecyclerView;
+    private CardAdapter2 mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
     @Override
@@ -28,7 +33,7 @@ public class HistoryFragment extends Fragment {
         final HistoryDBHandler historyDBHandler = new HistoryDBHandler(getActivity(),null,null,1); // db handler
 
         //loading view
-        historyDBHandler.loadHandler(historyView,getActivity());
+        historyDBHandler.loadHandler(mCardList);
 
         //dialog pop up
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()); //confirm delete dialog
@@ -62,9 +67,34 @@ public class HistoryFragment extends Fragment {
             }
         });
 
+        buildRecyclerView(historyView);
+
         return historyView;
 
 
+    }
+
+
+    public void buildRecyclerView(View v) {
+        mRecyclerView = v.findViewById(R.id.recyclerView3);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mAdapter = new CardAdapter2(mCardList);
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mAdapter.setOnItemClickListener2(new CardAdapter2.OnItemClickListener2() {
+            @Override
+            public void onItemClick(int position) {
+
+            }
+
+            @Override
+            public void onSaveClick(int position) {
+                Toast.makeText(getContext(), "Vocabulary saved", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 

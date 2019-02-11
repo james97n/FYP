@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
-
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
-    android:layout_marginStart="20dp"
-    android:orientation="vertical">
-
-    <TableRow>
+    tools:context="com.james.fyp.StudyFragment">
 
 
-        <TextView
-            android:layout_width="181dp"
-            android:layout_height="43dp"
-            android:text="@string/intro_save"/>
-
-        <Button
-            android:id="@+id/btnDelete2"
-            android:layout_width="10dp"
-            android:layout_height="50dp"
-            android:text="@string/delete" />
-    </TableRow>
-
-    <TableRow>
-
-        <TextView
-            android:layout_width="182dp"
-            android:layout_height="50dp"
-            android:text="@string/word"
-            android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-        <TextView
-            android:layout_width="181dp"
-            android:layout_height="50dp"
-            android:text="@string/meaning"
-            android:textAppearance="@android:style/TextAppearance.Material.Large"/>
-
-    </TableRow>
+    <TableLayout
 
 
-    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
 
-        <TableLayout android:id="@+id/savedTable"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-        </TableLayout>
-
-
-    </ScrollView>
+        <TableRow>
 
 
+            <TextView
+                android:layout_width="181dp"
+                android:layout_height="43dp"
+                android:text="@string/intro_save" />
+
+            <Button
+                android:id="@+id/btnDelete2"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:text="@string/delete" />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="182dp"
+                android:layout_height="50dp"
+                android:text="@string/word"
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+            <TextView
+                android:layout_width="181dp"
+                android:layout_height="50dp"
+                android:text="@string/meaning"
+                android:textAppearance="@android:style/TextAppearance.Material.Large" />
+
+        </TableRow>
 
 
-</TableLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            android:scrollbars="vertical" />
 
 
+    </TableLayout>
+
+
+</RelativeLayout>

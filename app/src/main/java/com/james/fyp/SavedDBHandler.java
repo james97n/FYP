@@ -5,11 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class SavedDBHandler extends SQLiteOpenHelper {
 
@@ -31,26 +28,21 @@ public class SavedDBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
-    public void loadHandler(View view, Context context) {
-        TableLayout tablelayout = view.findViewById(R.id.savedTable);
+    public void loadHandler(ArrayList<CardItem> mCardList) {
+        //TableLayout tablelayout = view.findViewById(R.id.savedTable);
         String query = "Select*FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
-            View tablerow = LayoutInflater.from(context).inflate(R.layout.table_saved_words,null,false);
 
             //get the attribute values from db table
             String result_0 = cursor.getString(0);
             String result_1 = cursor.getString(1);
 
-            //declare variable that linked to xml textview
-            TextView name  = tablerow.findViewById(R.id.savedword);
-            TextView title  = tablerow.findViewById(R.id.savedmeaning);
+            //add variable to card list
+            mCardList.add(new CardItem(result_0, result_1));
 
-            //add values to the tablelayout
-            name.setText(result_0);
-            title.setText(result_1);
-            tablelayout.addView(tablerow);
+
         } //iterate the whole db table
         cursor.close();
         db.close();

@@ -40,6 +40,8 @@ public class LearningFragment extends Fragment {
     protected TextView textViewHighscore;
     protected Spinner spinnerDifficulty;
 
+    View V; //variable used to hide keyboard
+
     protected static int highscore;
 
     public interface LearningFragmentListener {
@@ -121,6 +123,7 @@ public class LearningFragment extends Fragment {
                 if(loadPlayerName().equals("")){
                     startbtn = true;
                     alert.show();
+                    V = v;
                     }
                     else{startQuiz();}
 
