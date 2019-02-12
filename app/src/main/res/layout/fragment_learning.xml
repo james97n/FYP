@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.fyp.LearningFragment">
+    tools:context="com.james.fyp.LearningFragment"
+    android:background="@drawable/lightblur">
 
     <TextView
         android:id="@+id/quiz_title"
@@ -63,7 +64,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="70dp"
         android:layout_below="@id/spinner_difficulty"
-        android:background="@drawable/button_bg_round"
+        android:background="@drawable/button_red_round"
         android:text="Start Quiz" />
 
     <Button
@@ -73,7 +74,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginStart="70dp"
         android:layout_below="@+id/button_start_quiz"
-        android:background="@drawable/button_bg_round"
+        android:background="@drawable/button_orange_round"
         android:text="Scoreboard" />
 
 
@@ -85,7 +86,7 @@
         android:layout_marginStart="70dp"
         android:layout_below="@id/spinner_difficulty"
         android:layout_toEndOf="@id/button_start_quiz"
-        android:background="@drawable/button_green_round"
+        android:background="@drawable/button_purple_round"
         android:text="Change Player" />
 
     <Button
@@ -96,7 +97,7 @@
         android:layout_marginStart="70dp"
         android:layout_toEndOf="@id/button_score_board"
         android:layout_below="@+id/button_change_player"
-        android:background="@drawable/button_green_round"
+        android:background="@drawable/button_cyan_round"
         android:text="Statistics" />
 
 

@@ -38,7 +38,7 @@ public class HistoryFragment extends Fragment {
         //dialog pop up
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity()); //confirm delete dialog
         builder.setTitle(getString(R.string.confirm_history));
-        builder.setMessage(getString(R.string.Cannot_undone));
+        builder.setMessage("This action cannot be undone!");
         builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) { // action yes
                 dialog.dismiss();

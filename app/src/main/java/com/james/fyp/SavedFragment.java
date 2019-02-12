@@ -11,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class SavedFragment extends Fragment {
         final View savedView = inflater.inflate(R.layout.fragment_saved, container, false); // declare history view
         //final TextView tView = historyView.findViewById(R.id.historyTextView1); // text view
         //TableLayout tablelayout = savedView.findViewById(R.id.savedTable); //  table layout
-        Button btnDelete = savedView.findViewById(R.id.btnDelete2); //delete button
+        //Button btnDelete = savedView.findViewById(R.id.btnDelete2); //delete button
         final SavedDBHandler savedDBHandler = new SavedDBHandler(getActivity(), null, null, 1); // db handler
 
         //loading view
@@ -61,7 +60,7 @@ public class SavedFragment extends Fragment {
             }
         });
 
-        // button action
+        /*// button action
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,7 +68,7 @@ public class SavedFragment extends Fragment {
                 alert.show();
 
             }
-        });
+        });*/
 
         //createCardList();
         buildRecyclerView(savedView);

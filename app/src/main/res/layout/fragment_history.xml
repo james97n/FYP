@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.fyp.StudyFragment">
+    tools:context="com.james.fyp.StudyFragment"
+    android:background="@drawable/lightblur">
 
 
     <TableLayout
@@ -19,38 +20,27 @@
 
 
             <TextView
-                android:layout_width="181dp"
-                android:layout_height="43dp"
-                android:text="@string/intro_history"/>
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:text="@string/intro_history"
+                android:gravity="center_vertical"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"/>
 
             <Button
                 android:id="@+id/btnDelete"
-                android:layout_width="10dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@android:color/holo_red_light"
                 android:text="@string/delete" />
         </TableRow>
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="182dp"
-                android:layout_height="50dp"
-                android:text="@string/word"
-                android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-            <TextView
-                android:layout_width="181dp"
-                android:layout_height="50dp"
-                android:text="@string/meaning"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"/>
-
-        </TableRow>
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
             android:padding="4dp"
             android:scrollbars="vertical" />
 

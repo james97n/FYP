@@ -70,6 +70,7 @@ public class LearningFragment extends Fragment {
         builder.setCancelable(true);
 
         final TextView tview = learningView.findViewById(R.id.player_name);
+        tview.setText("Player name: - " );
         if (!loadPlayerName().equals("")) {
             tview.setText("Player name: " + loadPlayerName());
         }

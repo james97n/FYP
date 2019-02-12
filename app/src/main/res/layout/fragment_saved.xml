@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.james.fyp.StudyFragment">
+    tools:context="com.james.fyp.StudyFragment"
+    android:background="@drawable/lightblur">
 
 
     <TableLayout
@@ -21,32 +22,16 @@
 
 
             <TextView
-                android:layout_width="181dp"
-                android:layout_height="43dp"
-                android:text="@string/intro_save" />
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:text="@string/intro_save"
+                android:gravity="center_vertical"
+                android:textAppearance="@android:style/TextAppearance.Material.Large"/>
 
-            <Button
-                android:id="@+id/btnDelete2"
-                android:layout_width="10dp"
-                android:layout_height="50dp"
-                android:text="@string/delete" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="182dp"
-                android:layout_height="50dp"
-                android:text="@string/word"
-                android:textAppearance="@android:style/TextAppearance.Material.Large" />
-
-            <TextView
-                android:layout_width="181dp"
-                android:layout_height="50dp"
-                android:text="@string/meaning"
-                android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         </TableRow>
+
+
 
 
         <android.support.v7.widget.RecyclerView
