@@ -6,12 +6,13 @@
     tools:context="com.james.fyp.LearningFragment">
 
     <TextView
+        android:id="@+id/quiz_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_above="@id/player_name"
+        android:layout_marginTop="50dp"
         android:text="Quiz"
+        android:typeface="monospace"
         android:textColor="@android:color/black"
         android:textSize="35sp" />
 
@@ -19,64 +20,83 @@
         android:id="@+id/player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:layout_above="@id/text_view_highscore"
-
-        android:textSize="20sp" />
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_below="@id/quiz_title"
+        android:textSize="25sp" />
 
     <TextView
         android:id="@+id/text_view_highscore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/button_start_quiz"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_below="@id/player_name"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
         android:text="Highscore: 0"
-        android:textSize="20sp" />
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/button_start_quiz"
-
-        android:layout_width="150dp"
+    <TextView
+        android:id="@+id/text_view_level"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Start Quiz" />
-
-    <Button
-        android:id="@+id/button_score_board"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/button_change_player"
-        android:layout_marginTop="16dp"
-        android:text="Scoreboard" />
+        android:layout_below="@id/text_view_highscore"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="10dp"
+        android:text="Level: "
+        android:textSize="25sp" />
 
     <Spinner
         android:id="@+id/spinner_difficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/button_start_quiz"
-        android:layout_alignStart="@+id/button_start_quiz"
+        android:layout_toEndOf="@id/text_view_level"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/text_view_highscore"
+        android:textSize="25sp"
+        style="@android:style/Widget.Holo.Light.Spinner" />
 
-        />
+
+    <Button
+        android:id="@+id/button_start_quiz"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/spinner_difficulty"
+        android:background="@drawable/button_bg_round"
+        android:text="Start Quiz" />
+
+    <Button
+        android:id="@+id/button_score_board"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@+id/button_start_quiz"
+        android:background="@drawable/button_bg_round"
+        android:text="Scoreboard" />
+
 
     <Button
         android:id="@+id/button_change_player"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/spinner_difficulty"
-        android:layout_marginTop="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="70dp"
+        android:layout_below="@id/spinner_difficulty"
+        android:layout_toEndOf="@id/button_start_quiz"
+        android:background="@drawable/button_green_round"
         android:text="Change Player" />
 
     <Button
         android:id="@+id/button_statistic"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_below="@+id/button_score_board"
-        android:layout_marginTop="16dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_toEndOf="@id/button_score_board"
+        android:layout_below="@+id/button_change_player"
+        android:background="@drawable/button_green_round"
         android:text="Statistics" />
 
 
