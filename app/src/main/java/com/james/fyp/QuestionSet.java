@@ -32,8 +32,11 @@ public class QuestionSet extends Fragment {
 
     protected View quizView;
     protected TextView textViewQuestion;
+    protected TextView textViewQuestion2;
     protected TextView textViewScore;
     protected TextView textViewQuestionCount;
+    protected TextView textViewQuestionGuide;
+    protected TextView textViewQuestionGuide2;
     private TextView textViewDifficulty;
     protected TextView textViewCountDown;
     protected RadioGroup rbGroup;
@@ -76,10 +79,13 @@ public class QuestionSet extends Fragment {
 
 
         textViewQuestion = quizView.findViewById(R.id.text_view_question);
+        textViewQuestion2 = quizView.findViewById(R.id.text_view_question2);
         textViewScore = quizView.findViewById(R.id.text_view_score);
         textViewQuestionCount = quizView.findViewById(R.id.text_view_question_count);
         textViewDifficulty = quizView.findViewById(R.id.text_view_difficulty);
         textViewCountDown = quizView.findViewById(R.id.text_view_countdown);
+        textViewQuestionGuide = quizView.findViewById(R.id.text_view_question_guide);
+        textViewQuestionGuide2 = quizView.findViewById(R.id.text_view_question_guide2);
         rbGroup = quizView.findViewById(R.id.radio_group);
         rb1 = quizView.findViewById(R.id.radio_button1);
         rb2 = quizView.findViewById(R.id.radio_button2);
@@ -92,9 +98,16 @@ public class QuestionSet extends Fragment {
 
         textViewDifficulty.setText("Difficulty: " + difficulty);
 
+        if(difficulty.equals("Beginner")) {
+            textViewQuestionGuide2.setText("Choose the correct meaning for the word below:");
+        }
+        else if (difficulty.equals("Competent")){
+            textViewQuestionGuide.setText("Fill in the blank.");
+        }
+
         QuizDBHandler dbHelper = new QuizDBHandler(getContext());
         questionList = dbHelper.getQuestions(difficulty);
-        questionCountTotal = questionList.size();
+        questionCountTotal = 10;
         Collections.shuffle(questionList);
 
         showNextQuestion();
@@ -128,7 +141,15 @@ public class QuestionSet extends Fragment {
         if (questionCounter < questionCountTotal) {
             currentQuestion = questionList.get(questionCounter);
 
-            textViewQuestion.setText(currentQuestion.getQuestion());
+            if(difficulty.equals("Beginner")) {
+                textViewQuestion2.setText(currentQuestion.getQuestion());
+            }
+            else if (difficulty.equals("Competent")){
+                textViewQuestion.setText(currentQuestion.getQuestion());
+            }
+
+
+            //textViewQuestion.setText(currentQuestion.getQuestion());
             rb1.setText(currentQuestion.getOption1());
             rb2.setText(currentQuestion.getOption2());
             rb3.setText(currentQuestion.getOption3());

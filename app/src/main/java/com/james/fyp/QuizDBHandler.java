@@ -138,9 +138,36 @@ public class QuizDBHandler extends SQLiteOpenHelper {
         Question q30 = new Question("十",
                 "Eight", "Nine", "Ten", 3, Question.DIFFICULTY_BEGINNER);
         addQuestion(q30);
-        /*Question q31 = new Question("COMPETENT: C is correct",
-                "A", "B", "C", 3, Question.DIFFICULTY_COMPETENT);
-        addQuestion(q31);*/
+        Question q31 = new Question("现在是 __ \n( It is 4 o'clock now )"  ,
+                "四", "四分钟", "四点钟", 3, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q31);
+        Question q32 = new Question("今天 __ 不错。\n( The weather is not bad today. )",
+                "人们", "天气", "我", 2, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q32);
+        Question q33 = new Question("你 __ 了吗？\n( Have you eaten? )",
+                "吃", "睡", "跑", 1, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q33);
+        Question q34 = new Question("__ 好吗？\n( How are you? )",
+                "不", "你", "我", 2, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q34);
+        Question q35 = new Question("我喜欢喝 __ 。\n( I like to drink coffee。 )",
+                "茶", "白开水", "咖啡", 3, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q35);
+        Question q36 = new Question("你会 __ 中文吗？\n( Can you speak Chinese? )",
+                "说", "听", "看", 1, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q36);
+        Question q37 = new Question("你 __ 他吗？\n( Do you know him? )",
+                "听过", "认识", "打", 2, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q37);
+        Question q38 = new Question("我是 __ 。\n( I am a student. )",
+                "人", "老师", "学生", 3, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q38);
+        Question q39 = new Question("我 __ 马来西亚。\n( I am from Malaysia. )",
+                "来自", "去", "喜欢", 1, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q39);
+        Question q40 = new Question("这是一支 __。\n( This is a pen. )",
+                "手机", "笔", "鸟", 2, Question.DIFFICULTY_COMPETENT);
+        addQuestion(q40);
 
     }
 

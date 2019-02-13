@@ -17,6 +17,9 @@ public class StudyFragment extends Fragment {
 
         final View studyView = inflater.inflate(R.layout.fragment_study, container, false);
 
+
+
+
         Button btnStudy = studyView.findViewById(R.id.btnPhrasebook);
         btnStudy.setOnClickListener(new View.OnClickListener() {
             @Override
