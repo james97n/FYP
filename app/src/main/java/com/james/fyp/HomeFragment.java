@@ -1,20 +1,15 @@
 package com.james.fyp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +25,7 @@ public class HomeFragment extends Fragment {
     Translator translator = new Translator();
     Button saveBtn;
     Button historyBtn;
+    Button translateBtn;
     //Boolean validTranslate = false;
     @Nullable
     @Override
@@ -47,12 +43,13 @@ public class HomeFragment extends Fragment {
         saveBtn =homeView.findViewById(R.id.btnSave);
         saveBtn.setEnabled(false);
         historyBtn = homeView.findViewById(R.id.btnHistory);
+        translateBtn = homeView.findViewById(R.id.btnTranslate);
 
 
         inputText = homeView.findViewById(R.id.search);
 
         //Done input action
-        inputText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+        /*inputText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -84,7 +81,7 @@ public class HomeFragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
         //save button action
 
@@ -109,6 +106,33 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        translateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //validTranslate = false;
+                text = inputText.getText().toString();
+                if (!text.isEmpty() && !text.trim().equals("")) {  // make sure user is not null
+                    try {
+                        translatedtext = translator.translate("en", "zh-CN", text, 1);
+                        historyDBHandler.addHandler(text, translatedtext);
+                        tView.setText(translatedtext);
+                        saveBtn.setEnabled(true);
+                        Toast.makeText(getContext(), "Translated", Toast.LENGTH_LONG).show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    translatedtext = "Please Input Text.";
+                }
+
+                tView.setText(translatedtext);
+
+
+            }
+        });
 
 
         return homeView;

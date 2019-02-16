@@ -20,12 +20,15 @@ public class Phrasebook extends Fragment {
     private CardAdapter2 mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    public SavedDBHandler savedDBHandler;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         final View view = inflater.inflate(R.layout.fragment_phrasebook, container, false);
 
+        savedDBHandler = new SavedDBHandler(getActivity(), null, null, 1);
 
         createCardList();
         buildRecyclerView(view);
@@ -64,6 +67,9 @@ public class Phrasebook extends Fragment {
 
             @Override
             public void onSaveClick(int position) {
+                String word = mCardList.get(position).getText1();
+                String meaning = mCardList.get(position).getText2();
+                savedDBHandler.addHandler(word, meaning);
                 Toast.makeText(getContext(), "Vocabulary saved", Toast.LENGTH_LONG).show();
             }
         });

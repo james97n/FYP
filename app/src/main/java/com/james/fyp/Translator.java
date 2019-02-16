@@ -1,7 +1,5 @@
 package com.james.fyp;
 
-import com.google.gson.JsonSyntaxException;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,8 +17,8 @@ public class Translator {
         // INSERT YOU URL HERE
         StringBuilder response = new StringBuilder();
         String check = text; // check the translate result of the input text
-        try {
-            String urlStr = "https://script.google.com/macros/s/AKfycbwMnih9Fdg7USzIQLQMHXkeMaVbgNVVN33kTCAgBZmU7mDImNQ/exec" +
+
+        String urlStr = "https://script.google.com/macros/s/AKfycbwMnih9Fdg7USzIQLQMHXkeMaVbgNVVN33kTCAgBZmU7mDImNQ/exec" +
                     "?q=" + URLEncoder.encode(text, "UTF-8") +
                     "&target=" + langTo +
                     "&source=" + langFrom;
@@ -44,10 +42,7 @@ public class Translator {
             }
             in.close();
 
-        } catch (IOException e) {
-            e.printStackTrace();
 
-        }
         if(check.equals(response.toString())&&depth>0) // if the result is same after translated, exchange the source and destination
         {
             return translate(langTo,langFrom,text,--depth);

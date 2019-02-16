@@ -23,6 +23,8 @@ public class HistoryFragment extends Fragment {
     private CardAdapter2 mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    public SavedDBHandler savedDBHandler;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class HistoryFragment extends Fragment {
         final View historyView = inflater.inflate(R.layout.fragment_history, container, false); // declare history view
         Button btnDelete = historyView.findViewById(R.id.btnDelete); //delete button
         final HistoryDBHandler historyDBHandler = new HistoryDBHandler(getActivity(),null,null,1); // db handler
+        savedDBHandler = new SavedDBHandler(getActivity(), null, null, 1);
 
         //loading view
         historyDBHandler.loadHandler(mCardList);
@@ -93,6 +96,7 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onSaveClick(int position) {
                 Toast.makeText(getContext(), "Vocabulary saved", Toast.LENGTH_LONG).show();
+                savedDBHandler.addHandler(mCardList.get(position).getText1(), mCardList.get(position).getText2());
             }
         });
     }
