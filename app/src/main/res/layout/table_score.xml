@@ -11,18 +11,21 @@
         android:id="@+id/ranking_number"
         android:layout_width="120dp"
         android:layout_height="50dp"
+        android:textColor="@android:color/black"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/playerName"
         android:layout_width="120dp"
         android:layout_height="50dp"
+        android:textColor="@android:color/black"
         android:textAppearance="@android:style/TextAppearance.Material.Medium" />
 
     <TextView
         android:id="@+id/playerScore"
         android:layout_width="120dp"
         android:layout_height="50dp"
+        android:textColor="@android:color/black"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         />
 </TableRow>

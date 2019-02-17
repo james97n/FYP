@@ -88,8 +88,8 @@ public  class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void UpdateHighscore(int highscoreNew){
-        learningFragment.updateHighscore(highscoreNew);
+    public void UpdateScore(int highscoreNew) {
+        learningFragment.updateScore(highscoreNew);
     }
 
     @Override

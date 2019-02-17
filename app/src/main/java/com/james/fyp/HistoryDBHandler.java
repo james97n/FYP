@@ -30,47 +30,25 @@ public class HistoryDBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
     public void loadHandler(ArrayList<CardItem> mCardList) {
-        //TableLayout tablelayout = view.findViewById(R.id.historyTable);
+
         String query = "Select*FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         while (cursor.moveToNext()) {
-            //View tablerow = LayoutInflater.from(context).inflate(R.layout.table_history_words,null,false);
+
 
             //get the attribute values from db table
             String result_0 = cursor.getString(0);
             String result_1 = cursor.getString(1);
 
-            mCardList.add(new CardItem(result_0, result_1));
+            mCardList.add(0, new CardItem(result_0, result_1));
 
-            /*//declare variable that linked to xml textview
-            TextView name  = tablerow.findViewById(R.id.word);
-            TextView title  = tablerow.findViewById(R.id.meaning);
 
-            //add values to the tablelayout
-            name.setText(result_0);
-            title.setText(result_1);
-            tablelayout.addView(tablerow);*/
         } //iterate the whole db table
         cursor.close();
         db.close();
     }
 
-    /*public String loadHandler() {
-        String result = "";
-        String query = "Select*FROM " + TABLE_NAME;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        while (cursor.moveToNext()) {
-            String result_0 = cursor.getString(1);
-            String result_1 = cursor.getString(2);
-            result += String.valueOf(result_0) + " " + result_1 +
-                    System.getProperty("line.separator");
-        }
-        cursor.close();
-        db.close();
-        return result;
-    }*/
 
     public void addHandler(String text, String translatedtext) {
         ContentValues values = new ContentValues();
@@ -90,5 +68,5 @@ public class HistoryDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    //public boolean updateHandler(int ID, String name) {}
+
 }

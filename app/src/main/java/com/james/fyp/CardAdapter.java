@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
-    private ArrayList<CardItem> mCardList;
+    private ArrayList<SavedCardItem> mCardList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
@@ -63,7 +63,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     }
 
-    public CardAdapter(ArrayList<CardItem> cardList) {
+    public CardAdapter(ArrayList<SavedCardItem> cardList) {
         mCardList = cardList;
 
     }
@@ -77,8 +77,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
-        CardItem currentItem = mCardList.get(position);
-
+        SavedCardItem currentItem = mCardList.get(position);
         holder.mTextView1.setText(currentItem.getText1());
         holder.mTextView2.setText(currentItem.getText2());
     }

@@ -15,6 +15,7 @@
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
     android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
     android:orientation="vertical">
 
 
@@ -25,19 +26,19 @@
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="No."
+            android:text="@string/No"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="Name"
+            android:text="@string/PlayerName"
             android:textAppearance="@android:style/TextAppearance.Material.Large" />
 
         <TextView
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:text="Score"
+            android:text="@string/PlayerScore"
             android:textAppearance="@android:style/TextAppearance.Material.Large"/>
 
     </TableRow>

@@ -77,6 +77,18 @@ public class HistoryFragment extends Fragment {
 
     }
 
+    public void RemoveAllItem() {
+
+        int size = mCardList.size();
+
+        for (int i = 0; i < size; i++) {
+
+            mCardList.remove(0);
+
+        }
+
+    }
+
 
     public void buildRecyclerView(View v) {
         mRecyclerView = v.findViewById(R.id.recyclerView3);
@@ -91,12 +103,19 @@ public class HistoryFragment extends Fragment {
             @Override
             public void onItemClick(int position) {
 
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new WordFragment(mCardList.get(position).getText1(), mCardList.get(position).getText2(), ""))
+                        .addToBackStack(null)
+                        .commit();
+
+                RemoveAllItem(); // to prevent item duplicate once back button pressed
+
             }
 
             @Override
             public void onSaveClick(int position) {
                 Toast.makeText(getContext(), "Vocabulary saved", Toast.LENGTH_LONG).show();
-                savedDBHandler.addHandler(mCardList.get(position).getText1(), mCardList.get(position).getText2());
+                savedDBHandler.addHandler(mCardList.get(position).getText1(), mCardList.get(position).getText2(), "");
             }
         });
     }

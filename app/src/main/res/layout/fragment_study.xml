@@ -16,7 +16,7 @@
         android:id="@+id/wordOfTheDay"
         android:layout_width="308dp"
         android:layout_height="150dp"
-        android:layout_above="@+id/vocabulary"
+
         android:layout_centerHorizontal="true"
         android:background="@drawable/back"
         android:gravity="center"

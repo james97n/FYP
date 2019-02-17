@@ -1,5 +1,7 @@
 package com.james.fyp;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
@@ -48,53 +50,30 @@ public class HomeFragment extends Fragment {
 
         inputText = homeView.findViewById(R.id.search);
 
-        //Done input action
-        /*inputText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+
+        tView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                    tView.setText(getString(R.string.translating));
-                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    //validTranslate = false;
-                    text = inputText.getText().toString();
-                    if(!text.isEmpty() && !text.trim().equals("")) {  // make sure user is not null
-                        try {
-                            translatedtext = translator.translate("en", "zh-CN", text,1);
-                            historyDBHandler.addHandler(text,translatedtext);
-                            tView.setText(translatedtext);
-                            saveBtn.setEnabled(true);
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    else{
-                        translatedtext = getString(R.string.no_input);
-                    }
-
-                    tView.setText(translatedtext);
-
-                    return true;
-
-                }
-                return false;
+            public void onClick(View view) {
+                ClipboardManager cm = (ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(tView.getText());
+                Toast.makeText(getContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
+
 
         //save button action
-
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    savedDBHandler.addHandler(text, translatedtext);
+                savedDBHandler.addHandler(text, translatedtext, "");
                     Toast.makeText(getContext(), getString(R.string.translate_saved), Toast.LENGTH_LONG).show();
 
             }
         });
 
+
+        //history button
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

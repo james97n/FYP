@@ -19,6 +19,7 @@ import java.util.List;
 
 public class ScoreDBHandler extends SQLiteOpenHelper {
 
+    //private SQLiteDatabase db;
     //information of database
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "scoreDB.db";
@@ -27,20 +28,22 @@ public class ScoreDBHandler extends SQLiteOpenHelper {
     public static final String COLUMN_PLAYER = "PlayerName";
     public static final String COLUMN_SCORE = "PlayerScore";
     //initialize the database
-    public ScoreDBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, DATABASE_NAME, factory, DATABASE_VERSION);
+    public ScoreDBHandler(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
+        //this.db =db;
         String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +  COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+COLUMN_PLAYER+ " TEXT, "+COLUMN_SCORE+" INTEGER )";
         db.execSQL(CREATE_TABLE);
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {}
 
     public void loadHandler(View view, Context context) {
         TableLayout tablelayout = view.findViewById(R.id.scoreTable);
-        String query = "Select*FROM " + TABLE_NAME+ " ORDER BY "+ COLUMN_SCORE +" DESC , " + COLUMN_ID + " DESC ";
+        String query = "Select*FROM " + TABLE_NAME + " ORDER BY " + COLUMN_SCORE + " DESC , " + COLUMN_ID + " DESC LIMIT " + 20;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         int count = 1;
@@ -68,7 +71,7 @@ public class ScoreDBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addHandler(String playerName, Integer score) {
+    public void addHandler(String playerName, int score) {
         ContentValues values = new ContentValues();
         values.putNull(COLUMN_ID);
         values.put(COLUMN_PLAYER, playerName);
@@ -78,15 +81,8 @@ public class ScoreDBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteAllHandler(Context context) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        //db.execSQL("delete from "+ TABLE_NAME);
-        context.deleteDatabase(DATABASE_NAME);
-        db.close();
-    }
 
-
-    public void loadPlayerHandler(View view, Context context, String player) {
+    public void loadPlayerHandler(View view, String player) {
 
         GraphView graph = view.findViewById(R.id.graph);
         String query = "Select * FROM " + TABLE_NAME + " WHERE " + COLUMN_PLAYER + " = " + "'" + player + "'" + " ORDER BY "+ COLUMN_ID + " ASC ";
@@ -117,6 +113,32 @@ public class ScoreDBHandler extends SQLiteOpenHelper {
         graph.addSeries(series);
         db.close();
     }
+
+    public int loadHighestScore(String player) {
+        int score = 0;
+        String query = "Select * FROM " + TABLE_NAME + " WHERE " + COLUMN_PLAYER + " = " + "'" + player + "'" + " ORDER BY " + COLUMN_SCORE + " DESC , " + COLUMN_ID + " DESC LIMIT " + 1;
+        //String query = "Select*FROM " + TABLE_NAME + " ORDER BY RANDOM() LIMIT 1";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            //View tablerow = LayoutInflater.from(context).inflate(R.layout.table_score,null,false);
+
+            //get the attribute values from db table
+            score = cursor.getInt(2);
+
+
+        } //iterate the whole db table
+
+
+        cursor.close();
+        db.close();
+
+        return score;
+
+
+    }
+
 
 
 

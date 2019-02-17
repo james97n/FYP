@@ -25,12 +25,12 @@ public class GraphFragment extends Fragment {
 
         final View graphView = inflater.inflate(R.layout.fragment_graph, container, false);
 
-        final ScoreDBHandler scoreDBHandler = new ScoreDBHandler(getActivity(),null,null,1); // db handler
+        final ScoreDBHandler scoreDBHandler = new ScoreDBHandler(getActivity()); // db handler
 
         final TextView tview = graphView.findViewById(R.id.playerGraph);
         tview.setText("Player: " + listener.loadPlayerName());
 
-        scoreDBHandler.loadPlayerHandler(graphView,getActivity(),listener.loadPlayerName());
+        scoreDBHandler.loadPlayerHandler(graphView, listener.loadPlayerName());
 
 
 

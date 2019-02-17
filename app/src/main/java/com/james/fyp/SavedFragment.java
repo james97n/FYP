@@ -17,10 +17,11 @@ import java.util.ArrayList;
 
 public class SavedFragment extends Fragment {
 
-    private ArrayList<CardItem> mCardList = new ArrayList<>();
+    private ArrayList<SavedCardItem> mCardList = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private CardAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    public SavedDBHandler savedDBHandler;
 
     @Nullable
     @Override
@@ -28,12 +29,9 @@ public class SavedFragment extends Fragment {
 
 
         // declaration
-        //private static Context context = null;
         final View savedView = inflater.inflate(R.layout.fragment_saved, container, false); // declare history view
-        //final TextView tView = historyView.findViewById(R.id.historyTextView1); // text view
-        //TableLayout tablelayout = savedView.findViewById(R.id.savedTable); //  table layout
-        //Button btnDelete = savedView.findViewById(R.id.btnDelete2); //delete button
-        final SavedDBHandler savedDBHandler = new SavedDBHandler(getActivity(), null, null, 1); // db handler
+
+        savedDBHandler = new SavedDBHandler(getActivity(), null, null, 1); // db handler
 
         //loading view
         savedDBHandler.loadHandler(mCardList);
@@ -60,25 +58,30 @@ public class SavedFragment extends Fragment {
             }
         });
 
-        /*// button action
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog alert = builder.create();
-                alert.show();
 
-            }
-        });*/
-
-        //createCardList();
         buildRecyclerView(savedView);
 
         return savedView;
     }
 
     public void removeItem(int position) {
+
+        long id = mCardList.get(position).getmID();
+        savedDBHandler.deleteItem(id);
         mCardList.remove(position);
         mAdapter.notifyItemRemoved(position);
+    }
+
+    public void RemoveAllItem() {
+
+        int size = mCardList.size();
+
+        for (int i = 0; i < size; i++) {
+
+            mCardList.remove(0);
+
+        }
+
     }
 
 
@@ -88,25 +91,24 @@ public class SavedFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mAdapter = new CardAdapter(mCardList);
 
+
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
-        /*new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder viewHolder1) {
-                return false;
-            }
 
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
-
-            }
-        }).attachToRecyclerView(mRecyclerView);*/
 
         mAdapter.setOnItemClickListener(new CardAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
+
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new WordFragment(mCardList.get(position).getText1(), mCardList.get(position).getText2(), mCardList.get(position).getText3()))
+                        .addToBackStack(null)
+                        .commit();
+
+                RemoveAllItem(); // to prevent item duplicate once back button pressed
+
 
             }
 
@@ -116,4 +118,5 @@ public class SavedFragment extends Fragment {
             }
         });
     }
+
 }

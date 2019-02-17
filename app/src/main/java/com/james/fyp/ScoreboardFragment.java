@@ -13,11 +13,10 @@ public class ScoreboardFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        ((MainActivity) getActivity()).setNavigationVisibility(false);
 
         final View scoreView = inflater.inflate(R.layout.fragment_scoreboard, container, false);
 
-        final ScoreDBHandler scoreDBHandler = new ScoreDBHandler(getActivity(),null,null,1); // db handler
+        final ScoreDBHandler scoreDBHandler = new ScoreDBHandler(getActivity()); // db handler
 
         //loading view
         scoreDBHandler.loadHandler(scoreView,getActivity());

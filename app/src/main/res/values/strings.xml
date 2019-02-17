@@ -25,4 +25,7 @@
     <string name="confirm_saved">Delete all saved vocabularies?</string>
     <string name="Enter_name">Please Enter Your Name</string>
     <string name="Get_ranked">You will be ranked after completing the quiz.</string>
+    <string name="No"><u>No.</u></string>
+    <string name="PlayerName"><u>Name</u></string>
+    <string name="PlayerScore"><u>Score</u></string>
 </resources>

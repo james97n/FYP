@@ -37,6 +37,18 @@ public class Phrasebook extends Fragment {
 
     }
 
+    public void RemoveAllItem() {
+
+        int size = mCardList.size();
+
+        for (int i = 0; i < size; i++) {
+
+            mCardList.remove(0);
+
+        }
+
+    }
+
     public void createCardList() {
         mCardList = new ArrayList<>();
         mCardList.add(new CardItem("你好吗？", "How are you?"));
@@ -63,13 +75,20 @@ public class Phrasebook extends Fragment {
             @Override
             public void onItemClick(int position) {
 
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new WordFragment(mCardList.get(position).getText1(), mCardList.get(position).getText2(), ""))
+                        .addToBackStack(null)
+                        .commit();
+
+                RemoveAllItem(); // to prevent item duplicate once back button pressed
+
             }
 
             @Override
             public void onSaveClick(int position) {
                 String word = mCardList.get(position).getText1();
                 String meaning = mCardList.get(position).getText2();
-                savedDBHandler.addHandler(word, meaning);
+                savedDBHandler.addHandler(word, meaning, "");
                 Toast.makeText(getContext(), "Vocabulary saved", Toast.LENGTH_LONG).show();
             }
         });

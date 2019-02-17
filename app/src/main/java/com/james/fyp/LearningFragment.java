@@ -23,13 +23,9 @@ public class LearningFragment extends Fragment {
     private LearningFragmentListener listener;
 
     static SharedPreferences prefs;
-    //static SharedPreferences prefs1;
-
-    //public static final String EXTRA_DIFFICULTY = "extraDifficulty";
 
 
     public static final String SHARED_PREFS = "sharedPrefs";
-    //public static final String SHARED_PREFS1 = "sharedPref";
     public static final String KEY_HIGHSCORE = "keyHighscore";
     public static final String PLAYER_NAME = "playerName";
     protected static String player_name;
@@ -40,7 +36,7 @@ public class LearningFragment extends Fragment {
     protected TextView textViewHighscore;
     protected Spinner spinnerDifficulty;
 
-    View V; //variable used to hide keyboard
+    //View V; //variable used to hide keyboard
 
     protected static int highscore;
 
@@ -53,8 +49,7 @@ public class LearningFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-
-        scoreDBHandler = new ScoreDBHandler(getContext(),null,null,1); // db handler
+        scoreDBHandler = new ScoreDBHandler(getContext()); // db handler
 
 
         final View learningView = inflater.inflate(R.layout.fragment_learning, container, false);
@@ -81,9 +76,17 @@ public class LearningFragment extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 player_name = input.getText().toString();
 
+                int playerhighscore = scoreDBHandler.loadHighestScore(player_name);
+
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString(PLAYER_NAME, player_name);
+                editor.putInt(KEY_HIGHSCORE, playerhighscore);
                 editor.apply();
+
+                getFragmentManager().beginTransaction()
+                        .replace(((ViewGroup) getView().getParent()).getId(), new LearningFragment())
+                        .addToBackStack(null)
+                        .commit();
 
                 //to check whether start button is clicked
                 if(startbtn){
@@ -124,23 +127,12 @@ public class LearningFragment extends Fragment {
                 if(loadPlayerName().equals("")){
                     startbtn = true;
                     alert.show();
-                    V = v;
                     }
                     else{startQuiz();}
 
             }
         });
 
-        //test purpose
-
-        /*GraphView graph = learningView.findViewById(R.id.graph);
-
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3)
-        });
-        graph.addSeries(series);*/
 
 
         Button btnScoreboard = learningView.findViewById(R.id.button_score_board);
@@ -205,8 +197,7 @@ public class LearningFragment extends Fragment {
     }
 
 
-
-    public void updateHighscore(int highscoreNew) {
+    public void updateScore(int highscoreNew) {
         if(highscoreNew>highscore){
             highscore = highscoreNew;}
 
@@ -220,7 +211,7 @@ public class LearningFragment extends Fragment {
 
    private void loadHighscore() {
 
-        highscore = prefs.getInt(KEY_HIGHSCORE, 0);
+       int highscore = prefs.getInt(KEY_HIGHSCORE, 0);
         textViewHighscore.setText("Highscore: " + highscore);
 
 

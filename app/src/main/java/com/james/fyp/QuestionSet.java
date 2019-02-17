@@ -64,7 +64,7 @@ public class QuestionSet extends Fragment {
 
 
     public interface QuestionSetListener{
-        void UpdateHighscore(int highScore);
+        void UpdateScore(int highScore);
     }
 
 
@@ -248,7 +248,7 @@ public class QuestionSet extends Fragment {
     public void finishQuiz() {
 
         int Score = score;
-        listener.UpdateHighscore(Score);
+        listener.UpdateScore(Score);
         getFragmentManager().beginTransaction()
                 .replace(((ViewGroup) getView().getParent()).getId(), new LearningFragment())
                 .addToBackStack(null)

@@ -1,5 +1,6 @@
 package com.james.fyp;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,10 +27,6 @@ public class StudyFragment extends Fragment {
     public static final String PHRASE_MEANING = "phraseMeaning";
     public static final String PHRASE_EXAMPLE = "phraseExample";
     public static final String CURRENT_TIME = "currentTime";
-
-
-
-
 
 
     @Override
@@ -88,10 +85,19 @@ public class StudyFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                savedDBHandler.addHandler(word.getText().toString(), meaning.getText().toString());
+                savedDBHandler.addHandler(word.getText().toString(), meaning.getText().toString(), example.getText().toString());
                 Toast.makeText(getContext(), "Saved", Toast.LENGTH_LONG).show();
 
 
+            }
+        });
+
+        word.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager cm = (ClipboardManager) view.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                cm.setText(word.getText());
+                Toast.makeText(getContext(), "Copied to clipboard", Toast.LENGTH_SHORT).show();
             }
         });
 
